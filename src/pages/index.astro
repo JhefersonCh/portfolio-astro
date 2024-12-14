@@ -1,11 +1,131 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Badge from '../components/Badge.astro';
+import LinkedInIcon from '../components/icons/LinkedIn.astro';
+import SocialPill from '../components/SocialPill.astro';
+import GitHubIcon from '../components/icons/GitHub.astro';
+import Mail from '../components/icons/Mail.astro';
+import Experience from '../components/Experience.astro';
+import SectionContainer from '../components/SectionContainer.astro';
+import Briefcase from '../components/icons/Briefcase.astro';
+import Code from '../components/icons/Code.astro';
+import Projects from '../components/Projects.astro';
+import AboutMe from '../components/AboutMe.astro';
+import Person from '../components/icons/Person.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Portfolio de Jheferson Checa - Desarrollador Fronted, con conocimiento en Backend y programador web"
+  description="Contrata a Jheferson Checa, un desarrollador frontend y programador web con experiencia en tecnologías como Angular, React, Next.js, Astro, Tailwind CSS y más. Contáctame para proyectos web personalizados."
+>
+  <main class="px-6">
+    <SectionContainer id="top" class="py-24 md:py-36 section-container">
+      <div class="flex flex-row gap-x-3 items-center mb-5">
+        <img
+          class="rounded-full size-12"
+          src="https://i.etsystatic.com/14590437/r/il/20b4d0/4829620135/il_fullxfull.4829620135_fj1t.jpg"
+          alt="photo"
+        />
+        <a
+          href="https://www.linkedin.com/in/jheferson-danni-checa-diaz-3386052a4/"
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center"
+        >
+          <Badge>Disponible para trabajar</Badge>
+        </a>
+      </div>
+      <h1
+        class="text-white text-2xl md:text-5xl font-bold flex flex-row gap-x-3 md:gap-x-4 md:pb-10 pb-6"
+      >
+        Hey, soy Jheferson
+      </h1>
+      <h2 class="text-xl md:text-2xl text-wrap max-w-[700px]">
+        <span>Más de 1 año de experiencia en desarrollo web.</span>
+        <span class="text-yellow-200/90"
+          >Desarrollador web FullStack apasionado y comprometido.</span
+        >
+        <span class="text-red-100/90">Originario de Mocoa, Colombia.</span>
+        <span class="opacity-75"
+          >Especializado en la creación de soluciones innovadoras y
+          personalizadas.</span
+        >
+      </h2>
+
+      <nav
+        class="flex gap-x-4 mt-5 md:mt-8 flex-wrap gap-y-4 md:gap-y-0 justify-center md:justify-start"
+      >
+        <SocialPill
+          href="https://www.linkedin.com/in/jheferson-danni-checa-diaz-3386052a4/"
+        >
+          <LinkedInIcon class="size-4 md:size-6" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="https://github.com/JhefersonCh">
+          <GitHubIcon class="size-4 md:size-6" />
+          GitHub
+        </SocialPill>
+        <SocialPill href="mailto:jheferson.checa@gmail.com">
+          <Mail class="size-4 md:size-6" />
+          jheferson.checa@gmail.com
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+    <SectionContainer id="experiencia" class="pb-24 section-container">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <Briefcase class="size-7" />
+        Experiencia laboral
+      </h2>
+      <Experience />
+    </SectionContainer>
+    <SectionContainer id="proyectos" class="section-container">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <Code class="size-7" />
+        Proyectos
+      </h2>
+      <Projects />
+    </SectionContainer>
+    <SectionContainer id="sobre-mi" class="pt-24 section-container">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <Person class="size-7" />
+        Sobre mí
+      </h2>
+      <AboutMe />
+    </SectionContainer>
+  </main>
 </Layout>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = Array.from(
+      document.querySelectorAll('.section-container'),
+    ).filter((section) => section.id);
+
+    function updateActiveLink() {
+      const scrollY = window.scrollY + window.innerHeight / 2;
+
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${section.id}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+  });
+</script>
+
+<style is:global>
+  .active {
+    color: rgb(59 130 246 / var(--tw-text-opacity, 1));
+  }
+</style>

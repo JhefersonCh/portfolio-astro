@@ -1,0 +1,44 @@
+---
+import ExperienceItem from './ExperienceItem.astro';
+
+const EXPERIENCE = [
+  {
+    title: 'Desarrollador Wordpress',
+    company: 'SouDev',
+    description:
+      'Contribuí al desarrollo de una aplicación web en Wordpress para IMPULSA CONSTRUCTORA, optimizando la experiencia del usuario y mejorando la funcionalidad del sitio.',
+    date: 'Octubre 2024 - Diciembre 2024',
+  },
+  {
+    title: 'Desarrollador FullStack',
+    company: 'SouDev',
+    description:
+      'Colaboré en el desarrollo de una aplicación web integral utilizando Angular para el frontend y NestJs para el backend, trabajando en equipo para la UNAB.',
+    date: 'Agosto 2024 - Noviembre 2024',
+  },
+  {
+    title: 'Desarrollador Frontend',
+    company: 'SouDev',
+    description:
+      'Contribuí a la implementación de soluciones innovadoras en una aplicación web con Angular para la alcaldía de Sibundoy (Ikaro), mejorando la accesibilidad y la interacción del usuario.',
+    date: 'Enero 2024 - Julio 2024',
+  },
+  {
+    title: 'Desarrollador Wordpress',
+    company: 'SouDev',
+    description:
+      'Lideré el desarrollo de una aplicación web en Wordpress para Jhon Alarcón, enfocándome en la personalización y la optimización del rendimiento del sitio.',
+    date: 'Mayo 2024 - Junio 2024',
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700 ml-3">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

@@ -1,0 +1,106 @@
+---
+import Angular from './icons/Angular.astro';
+import Nest from './icons/Nest.astro';
+import AngularMat from './icons/AngularMat.astro';
+import Bootstrap from './icons/Bootstrap.astro';
+import GitHub from './icons/GitHub.astro';
+import Arrow from './icons/Arrow.astro';
+
+const TAGS = {
+  ANGULAR: {
+    name: 'ANGULAR',
+    class: 'bg-black text-white hover:bg-white/15 transition',
+    icon: Angular,
+  },
+  NESTJS: {
+    name: 'NESTJS',
+    class: 'bg-black text-white hover:bg-white/15 transition',
+    icon: Nest,
+  },
+  ANGULAR_MAT: {
+    name: 'ANGULAR MATERIAL',
+    class: 'bg-black text-white hover:bg-white/15 transition',
+    icon: AngularMat,
+  },
+  BOOTSTRAP: {
+    name: 'BOOTSTRAP',
+    class: 'bg-black text-white hover:bg-white/15 transition',
+    icon: Bootstrap,
+  },
+};
+const PROJECTS = [
+  {
+    title: 'ProjectZen',
+    description:
+      'Creado con Angular, NestJs, Bootstrap, Angular Material y otras tecnologías. \n Es un proyecto de gestión de tareas que permite a los usuarios crear, editar y eliminar tareas. También permite a los usuarios crear y editar proyectos, y asignar tareas a los miembros del proyecto.',
+    link: 'https://project-zen.netlify.app',
+    github: 'https://github.com/JhefersonCh/frontend-project-zen',
+    img: '/projects/projectzen.jpg',
+    tags: [TAGS.ANGULAR, TAGS.NESTJS, TAGS.BOOTSTRAP],
+  },
+];
+---
+
+{
+  PROJECTS.map(({ img, title, description, tags, link, github }) => (
+    <article class="mb-12 flex flex-col md:flex-row md:gap-y-0 gap-y-4 gap-x-6 items-center">
+      <div class="w-full md:w-1/2 flex justify-center flex-col gap-y-4">
+        <div class="relative overflow-hidden rounded shadow-2xl shadow-white/10 h-fit">
+          <img
+            class="w-full hover:scale-110 transition-all duration-300"
+            src={img}
+            alt={`Captura de pantalla del proyecto ${title}`}
+          />
+        </div>
+
+        <ul class="flex gap-2 flex-wrap mt-4 md:justify-start justify-center">
+          {tags.map((tag) => (
+            <li
+              class={`flex items-center  border border-white/20 rounded-full px-3 py-1 text-sm hover:scale-105 
+                ${typeof tag === 'object' && typeof tag !== 'string' ? tag.class : null}`}
+            >
+              {typeof tag === 'object' && typeof tag !== 'string' ? (
+                <span class="flex items-center gap-x-2">
+                  <tag.icon class="size-3" />
+                  {tag.name}
+                </span>
+              ) : typeof tag === 'string' ? (
+                tag
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class=" w-full md:w-1/2">
+        <h3 class="text-2xl font-semibold text-yellow-100 mb-2">{title}</h3>
+        <p class="text-md text-gray-300 mb-4 text-pretty whitespace-pre-line">
+          {description}
+        </p>
+        <div class="flex gap-x-4 justify-center md:justify-start">
+          {github && (
+            <a
+              role="button"
+              href={github}
+              target="_blank"
+              class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+            >
+              <GitHub class="size-4" />
+              Código
+            </a>
+          )}
+          {link && (
+            <a
+              role="button"
+              href={link}
+              target="_blank"
+              class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+            >
+              <Arrow class="size-5" />
+              Proyecto
+            </a>
+          )}
+        </div>
+      </div>
+    </article>
+  ))
+}

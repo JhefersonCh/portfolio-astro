@@ -1,0 +1,32 @@
+<span
+  class="wave-bg text-white text-xs md:text-sm font-medium me-2 px-2.5 md:py-2 py-0.5 rounded-full hover:scale-105 transition"
+>
+  <slot />
+</span>
+
+<style>
+  .wave-bg {
+    background: linear-gradient(
+      45deg,
+      rgb(167, 197, 34),
+      rgb(59, 130, 246),
+      rgb(236, 72, 153),
+      rgb(168, 85, 247),
+      rgb(34, 197, 94)
+    );
+    background-size: 400% 400%;
+    animation: wave 8s ease infinite;
+  }
+
+  @keyframes wave {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
