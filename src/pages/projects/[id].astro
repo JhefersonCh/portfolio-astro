@@ -1,0 +1,118 @@
+---
+import React from 'react';
+import { PROJECTS } from '../../constants/project.const';
+import SectionContainer from '../../components/SectionContainer.astro';
+import Layout from '../../layouts/Layout.astro';
+import GitHub from '../../components/icons/GitHub.astro';
+import Arrow from '../../components/icons/Arrow.astro';
+import Slider from '../../components/Slider.astro';
+
+export async function getStaticPaths() {
+  return PROJECTS.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const {
+  title,
+  completeDescription,
+  description,
+  link,
+  github,
+  tags,
+  gallery,
+  id,
+} = project;
+---
+
+<Layout title={title} description={description} withOptions={false}>
+  <a
+    href="/#proyectos"
+    class="flex items-center gap-x-2 fixed top-5 left-5 md:top-10 md:left-10 hover:scale-105 hover:bg-neutral-950/60 bg-neutral-950/50 rounded-full px-3 py-2 backdrop-blur-2xl z-10"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M5 12l14 0"></path><path d="M5 12l6 6"></path><path d="M5 12l6 -6"
+      ></path></svg
+    > Volver</a
+  >
+  <SectionContainer class="pt-24 px-6">
+    <h2
+      transition:name={`title-${id}`}
+      class="text-4xl font-semibold mb-5 text-yellow-100"
+    >
+      {title}
+    </h2>
+    <article class="flex flex-col md:flex-row gap-x-6 gap-y-6">
+      <aside>
+        <div class="w-full">
+          <Slider images={gallery || []} />
+        </div>
+        <ul class="flex gap-2 flex-wrap justify-center mt-3">
+          {
+            tags.map((tag) => (
+              <li
+                class={`flex items-center  border border-white/20 rounded-full px-3 py-1 text-sm hover:scale-105 
+              ${typeof tag === 'object' && typeof tag !== 'string' ? tag.class : null}`}
+              >
+                {typeof tag === 'object' && typeof tag !== 'string' ? (
+                  <span class="flex items-center gap-x-2">
+                    <tag.icon class="size-3 md:size-4" />
+                    {tag.name}
+                  </span>
+                ) : typeof tag === 'string' ? (
+                  tag
+                ) : null}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-5">
+          <p class="text-pretty whitespace-pre-line text-white/80">
+            {completeDescription || description}
+          </p>
+
+          <div class="flex gap-x-4 justify-center mt-5">
+            {
+              github && (
+                <a
+                  role="button"
+                  href={github}
+                  target="_blank"
+                  class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                >
+                  <GitHub class="size-4" />
+                  Código
+                </a>
+              )
+            }
+            {
+              link && (
+                <a
+                  role="button"
+                  href={link}
+                  target="_blank"
+                  class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                >
+                  <Arrow class="size-5" />
+                  Proyecto
+                </a>
+              )
+            }
+          </div>
+        </div>
+      </aside>
+    </article>
+  </SectionContainer>
+</Layout>

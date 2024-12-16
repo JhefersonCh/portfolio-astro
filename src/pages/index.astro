@@ -96,7 +96,7 @@ import Person from '../components/icons/Person.astro';
 </Layout>
 
 <script is:inline>
-  document.addEventListener('DOMContentLoaded', function () {
+  (function initi() {
     const navLinks = document.querySelectorAll('nav a');
     const sections = Array.from(
       document.querySelectorAll('.section-container'),
@@ -121,7 +121,7 @@ import Person from '../components/icons/Person.astro';
     }
 
     window.addEventListener('scroll', updateActiveLink);
-  });
+  })();
 </script>
 
 <style is:global>

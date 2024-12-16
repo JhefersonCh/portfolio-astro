@@ -1,162 +1,24 @@
 ---
-import Angular from './icons/Angular.astro';
-import Nest from './icons/Nest.astro';
-import AngularMat from './icons/AngularMat.astro';
-import Bootstrap from './icons/Bootstrap.astro';
 import GitHub from './icons/GitHub.astro';
 import Arrow from './icons/Arrow.astro';
-import React from './icons/React.astro';
-import Express from './icons/Express.astro';
-import Tailwind from './icons/Tailwind.astro';
-
-const TAGS = {
-  ANGULAR: {
-    name: 'ANGULAR',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: Angular,
-  },
-  NESTJS: {
-    name: 'NESTJS',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: Nest,
-  },
-  ANGULAR_MAT: {
-    name: 'ANGULAR MATERIAL',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: AngularMat,
-  },
-  BOOTSTRAP: {
-    name: 'BOOTSTRAP',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: Bootstrap,
-  },
-  REACT: {
-    name: 'REACT',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: React,
-  },
-  EXPRESS: {
-    name: 'EXPRESS',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: Express,
-  },
-  TAILWIND: {
-    name: 'TAILWINDCSS',
-    class: 'bg-black text-white hover:bg-white/15 transition',
-    icon: Tailwind,
-  },
-};
-const PROJECTS = [
-  {
-    title: 'ProjectZen',
-    description:
-      'ProjectZen es un proyecto de gestión de tareas que permite a los usuarios crear, editar y eliminar tareas. También permite a los usuarios crear y editar proyectos, y asignar tareas a los miembros del equipo.',
-    link: 'https://project-zen.netlify.app',
-    github: 'https://github.com/JhefersonCh/frontend-project-zen',
-    img: '/projects/projectzen.jpg',
-    tags: [TAGS.ANGULAR, TAGS.NESTJS, TAGS.BOOTSTRAP],
-  },
-  {
-    title: 'NotesHub',
-    description:
-      'NotesHub es un proyecto para la gestión de notas personales, donde se pueden crear, editar y eliminar notas. Manejando el estado, prioridad, categorías y más características.',
-    link: 'https://mynotehub.vercel.app/',
-    img: '/projects/noteshub.webp',
-    github: 'https://github.com/JhefersonCh/notes_app_frontend',
-    tags: [TAGS.REACT, TAGS.EXPRESS, TAGS.TAILWIND],
-  },
-  {
-    title: 'PreUNAB',
-    description:
-      'PreUNAB es un proyecto universitario que permite a los estudiantes de la UNAB realizar sus ensayos, prácticas y otros. \n Los docentes de la UNAB pueden acceder a este proyecto para monitorear el avance de sus estudiantes.',
-    link: 'https://preunab-dev.unab.cl/',
-    img: '/projects/preunab.webp',
-    tags: [TAGS.ANGULAR, TAGS.NESTJS, TAGS.BOOTSTRAP],
-  },
-  {
-    title: 'iKARO',
-    description:
-      'iKaro es un proyecto para la aclaldía de Sibundoy, implementada para el manejo de los documentos de contratación de la alcaldía.',
-    link: 'https://clm.test.kamilainnovation.co/',
-    img: '/projects/ikaro.webp',
-    tags: [TAGS.ANGULAR, TAGS.NESTJS, TAGS.BOOTSTRAP],
-  },
-];
+import { PROJECTS } from '../constants/project.const';
 ---
 
 <div class="flex flex-col">
   {
-    PROJECTS.map(({ img, title, description, tags, link, github }, index) =>
-      index < 3 ? (
-        <article class="flex flex-col md:flex-row md:gap-y-0 gap-y-4 gap-x-6 items-center py-6 border-b border-white/10 last:border-none project">
-          <div class="w-full md:w-1/2 flex justify-center flex-col gap-y-2">
-            <div class="relative overflow-hidden rounded shadow-2xl shadow-white/10 h-fit">
-              <img
-                class="w-full hover:scale-110 transition-all duration-300"
-                src={img}
-                alt={`Captura de pantalla del proyecto ${title}`}
-              />
-            </div>
-
-            <ul class="flex gap-2 flex-wrap md:justify-start justify-center">
-              {tags.map((tag) => (
-                <li
-                  class={`flex items-center  border border-white/20 rounded-full px-3 py-1 text-sm hover:scale-105 
-                  ${typeof tag === 'object' && typeof tag !== 'string' ? tag.class : null}`}
-                >
-                  {typeof tag === 'object' && typeof tag !== 'string' ? (
-                    <span class="flex items-center gap-x-2">
-                      <tag.icon class="size-3 md:size-4" />
-                      {tag.name}
-                    </span>
-                  ) : typeof tag === 'string' ? (
-                    tag
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class=" w-full md:w-1/2">
-            <h3 class="text-2xl font-semibold text-yellow-100 mb-2">{title}</h3>
-            <p class="text-md text-gray-300 mb-4 text-pretty whitespace-pre-line">
-              {description}
-            </p>
-            <div class="flex gap-x-4 justify-center md:justify-start">
-              {github && (
-                <a
-                  role="button"
-                  href={github}
-                  target="_blank"
-                  class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
-                >
-                  <GitHub class="size-4" />
-                  Código
-                </a>
-              )}
-              {link && (
-                <a
-                  role="button"
-                  href={link}
-                  target="_blank"
-                  class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
-                >
-                  <Arrow class="size-5" />
-                  Proyecto
-                </a>
-              )}
-            </div>
-          </div>
-        </article>
-      ) : (
-        <div class="show-more-content">
-          <article class="flex flex-col md:flex-row md:gap-y-0 gap-y-4 gap-x-6 items-center py-6 border-b border-white/10 ">
+    PROJECTS.map(
+      ({ img, title, description, tags, link, github, id }, index) =>
+        index < 3 ? (
+          <article class="flex flex-col md:flex-row md:gap-y-0 gap-y-4 gap-x-6 items-center py-6 border-b border-white/10 last:border-none project">
             <div class="w-full md:w-1/2 flex justify-center flex-col gap-y-2">
               <div class="relative overflow-hidden rounded shadow-2xl shadow-white/10 h-fit">
-                <img
-                  class="w-full hover:scale-110 transition-all duration-300"
-                  src={img}
-                  alt={`Captura de pantalla del proyecto ${title}`}
-                />
+                <a href={`projects/${id}`}>
+                  <img
+                    class="w-full hover:scale-110 transition-all duration-300"
+                    src={img}
+                    alt={`Captura de pantalla del proyecto ${title}`}
+                  />
+                </a>
               </div>
 
               <ul class="flex gap-2 flex-wrap md:justify-start justify-center">
@@ -178,7 +40,10 @@ const PROJECTS = [
               </ul>
             </div>
             <div class=" w-full md:w-1/2">
-              <h3 class="text-2xl font-semibold text-yellow-100 mb-2">
+              <h3
+                transition:name={`title-${id}`}
+                class="text-2xl font-semibold text-yellow-100 mb-2"
+              >
                 {title}
               </h3>
               <p class="text-md text-gray-300 mb-4 text-pretty whitespace-pre-line">
@@ -210,8 +75,76 @@ const PROJECTS = [
               </div>
             </div>
           </article>
-        </div>
-      ),
+        ) : (
+          <div class="show-more-content">
+            <article class="flex flex-col md:flex-row md:gap-y-0 gap-y-4 gap-x-6 items-center py-6 border-b border-white/10 ">
+              <div class="w-full md:w-1/2 flex justify-center flex-col gap-y-2">
+                <div class="relative overflow-hidden rounded shadow-2xl shadow-white/10 h-fit">
+                  <a href={`projects/${id}`}>
+                    <img
+                      class="w-full hover:scale-110 transition-all duration-300"
+                      src={img}
+                      alt={`Captura de pantalla del proyecto ${title}`}
+                    />
+                  </a>
+                </div>
+
+                <ul class="flex gap-2 flex-wrap md:justify-start justify-center">
+                  {tags.map((tag) => (
+                    <li
+                      class={`flex items-center  border border-white/20 rounded-full px-3 py-1 text-sm hover:scale-105 
+                  ${typeof tag === 'object' && typeof tag !== 'string' ? tag.class : null}`}
+                    >
+                      {typeof tag === 'object' && typeof tag !== 'string' ? (
+                        <span class="flex items-center gap-x-2">
+                          <tag.icon class="size-3 md:size-4" />
+                          {tag.name}
+                        </span>
+                      ) : typeof tag === 'string' ? (
+                        tag
+                      ) : null}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class=" w-full md:w-1/2">
+                <h3
+                  transition:name={`title-${id}`}
+                  class="text-2xl font-semibold text-yellow-100 mb-2"
+                >
+                  {title}
+                </h3>
+                <p class="text-md text-gray-300 mb-4 text-pretty whitespace-pre-line">
+                  {description}
+                </p>
+                <div class="flex gap-x-4 justify-center md:justify-start">
+                  {github && (
+                    <a
+                      role="button"
+                      href={github}
+                      target="_blank"
+                      class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                    >
+                      <GitHub class="size-4" />
+                      Código
+                    </a>
+                  )}
+                  {link && (
+                    <a
+                      role="button"
+                      href={link}
+                      target="_blank"
+                      class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                    >
+                      <Arrow class="size-5" />
+                      Proyecto
+                    </a>
+                  )}
+                </div>
+              </div>
+            </article>
+          </div>
+        ),
     )
   }
   {
@@ -232,21 +165,23 @@ const PROJECTS = [
 </div>
 
 <script is:inline>
-  const showMore = document.getElementById('show-more');
-  const showMoreContent = document.querySelectorAll('.show-more-content');
+  (function () {
+    const showMore = document.getElementById('show-more');
+    if (!showMore) return;
 
-  showMore.addEventListener('click', () => {
-    showMoreContent.forEach((content) => {
-      content.classList.toggle('show');
+    const showMoreContent = document.querySelectorAll('.show-more-content');
+
+    showMore.addEventListener('click', () => {
+      showMoreContent.forEach((content) => {
+        content.classList.toggle('show');
+      });
+      const text = document.getElementById('text');
+      text.textContent =
+        text.textContent === ' Ver todos ' || text.textContent === 'Ver todos'
+          ? 'Ocultar'
+          : 'Ver todos';
     });
-    const text = document.getElementById('text');
-    console.log(text.textContent);
-
-    text.textContent =
-      text.textContent === ' Ver todos ' || text.textContent === 'Ver todos'
-        ? 'Ocultar'
-        : 'Ver todos';
-  });
+  })();
 </script>
 
 <style>

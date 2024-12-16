@@ -57,14 +57,6 @@
 
             <li>
               <a
-                href="#sobre-mi"
-                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                onclick="toggleDropdown()">Sobre mí</a
-              >
-            </li>
-
-            <li>
-              <a
                 href="#experiencia"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onclick="toggleDropdown()">Experiencia</a
@@ -75,6 +67,14 @@
                 href="#proyectos"
                 class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                 onclick="toggleDropdown()">Proyectos</a
+              >
+            </li>
+
+            <li>
+              <a
+                href="#sobre-mi"
+                class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                onclick="toggleDropdown()">Sobre mí</a
               >
             </li>
 
@@ -93,15 +93,25 @@
 </div>
 
 <script is:inline>
-  const isMobile = window.innerWidth <= 768;
   window.addEventListener('scroll', function () {
     const header = document.getElementById('dynamicHeader');
-    if (window.scrollY > 50 && !isMobile) {
-      header.classList.remove('bg-transparent');
-      header.classList.add('bg-neutral-950/50', 'backdrop-blur-2xl');
-    } else {
-      header.classList.remove('bg-neutral-950/50', 'backdrop-blur-2xl');
-      header.classList.add('bg-transparent');
+
+    if (header) {
+      if (window.scrollY > 50) {
+        header.classList.add(
+          'bg-transparent',
+          'md:backdrop-blur-2xl',
+          'md:bg-neutral-950/50',
+          'backdrop-blur-none',
+        );
+      } else {
+        header.classList.remove(
+          'bg-transparent',
+          'md:backdrop-blur-2xl',
+          'md:bg-neutral-950/50',
+          'backdrop-blur-none',
+        );
+      }
     }
   });
 
