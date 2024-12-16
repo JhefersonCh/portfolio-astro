@@ -2,6 +2,7 @@
 import GitHub from './icons/GitHub.astro';
 import Arrow from './icons/Arrow.astro';
 import { PROJECTS } from '../constants/project.const';
+import Url from './icons/Url.astro';
 ---
 
 <div class="flex flex-col">
@@ -49,13 +50,13 @@ import { PROJECTS } from '../constants/project.const';
               <p class="text-md text-gray-300 mb-4 text-pretty whitespace-pre-line">
                 {description}
               </p>
-              <div class="flex gap-x-4 justify-center md:justify-start">
+              <div class="flex gap-x-2 justify-center md:justify-start">
                 {github && (
                   <a
                     role="button"
                     href={github}
                     target="_blank"
-                    class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                    class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-2 md:px-4 py-1 md:py-2 w-fit hover:bg-white/10 transition-all duration-300"
                   >
                     <GitHub class="size-4" />
                     Código
@@ -66,12 +67,20 @@ import { PROJECTS } from '../constants/project.const';
                     role="button"
                     href={link}
                     target="_blank"
-                    class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-4 py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                    class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-2 md:px-4 py-1 md:py-2 w-fit hover:bg-white/10 transition-all duration-300"
                   >
-                    <Arrow class="size-5" />
+                    <Url class="size-5" />
                     Proyecto
                   </a>
                 )}
+                <a
+                  role="button"
+                  href={`projects/${id}`}
+                  class="flex flex-row gap-x-3 items-center rounded border-white/20 border-2 px-2 md:px-4 py-1 md:py-2 w-fit hover:bg-white/10 transition-all duration-300"
+                >
+                  <Arrow class="size-5" />
+                  Detalles
+                </a>
               </div>
             </div>
           </article>
