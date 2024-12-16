@@ -1,0 +1,94 @@
+---
+import { PROJECTS } from '../constants/project.const';
+
+interface Props {
+  id: number;
+}
+const { id } = Astro.props;
+const gallery = PROJECTS.find((proj) => proj.id === id)?.gallery;
+---
+
+<div class="swiper w-full">
+  <div class="swiper-wrapper" id="my-slider">
+    {
+      gallery?.map(({ src, alt }) => (
+        <a
+          class="swiper-slide"
+          href={src}
+          data-pswp-width="800"
+          data-pswp-height="800"
+          target="_blank"
+          data-cropped="true"
+        >
+          <img src={src} alt={alt} />
+        </a>
+      ))
+    }
+  </div>
+  <div
+    class="swiper-button-prev rounded-full bg-slate-800/50 hover:bg-slate-800/90 hover:scale-105 transition-all duration-500"
+  >
+  </div>
+  <div
+    class="swiper-button-next rounded-full bg-slate-800/50 hover:bg-slate-800/90 hover:scale-105 transition-all duration-500"
+  >
+  </div>
+</div>
+<script>
+  import Swiper from 'swiper';
+  import 'swiper/css';
+
+  import { Navigation, Autoplay } from 'swiper/modules';
+  import 'swiper/css/navigation';
+  import 'swiper/css/autoplay';
+
+  import PhotoSwipeLightbox from 'photoswipe/lightbox';
+  import 'photoswipe/style.css';
+
+  function initializeGallery() {
+    const images = document.querySelectorAll('img');
+    const swiper = new Swiper('.swiper', {
+      modules: [Navigation, Autoplay],
+      loop: images.length > 1 ? true : false,
+      slidesPerView: 'auto',
+      spaceBetween: 20,
+      autoplay: {
+        delay: 3000,
+      },
+      navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+      },
+    });
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#my-slider',
+      children: 'a',
+      pswpModule: () => import('photoswipe'),
+    });
+    lightbox.init();
+  }
+
+  if (document.querySelector('.swiper')) {
+    initializeGallery();
+  }
+
+  document.addEventListener('astro:page-load', initializeGallery);
+</script>
+<style>
+  .swiper-slide {
+    height: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 60px;
+    height: 60px;
+  }
+</style>

@@ -1,11 +1,10 @@
 ---
-import React from 'react';
 import { PROJECTS } from '../../constants/project.const';
 import SectionContainer from '../../components/SectionContainer.astro';
 import Layout from '../../layouts/Layout.astro';
 import GitHub from '../../components/icons/GitHub.astro';
 import Arrow from '../../components/icons/Arrow.astro';
-import Slider from '../../components/Slider.astro';
+import PhotoSlider from '../../components/PhotoSlider.astro';
 
 export async function getStaticPaths() {
   return PROJECTS.map((project) => ({
@@ -56,7 +55,8 @@ const {
     <article class="flex flex-col md:flex-row gap-x-6 gap-y-6">
       <aside>
         <div class="w-full">
-          <Slider images={gallery || []} />
+          <!-- <Slider images={gallery || []} /> -->
+          <PhotoSlider id={id} />
         </div>
         <ul class="flex gap-2 flex-wrap justify-center mt-3">
           {
