@@ -1,0 +1,42 @@
+<div style="overflow: auto; max-width: 100%;" class="px-4 md:px-0 relative">
+  <button
+    onclick="toggleFullScreen()"
+    class="absolute top-16 right-8 size-8 hover:scale-105 transition-all duration-300"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="size-8 hover:scale-105"
+      ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+        d="M16 4l4 0l0 4"></path><path d="M14 10l6 -6"></path><path
+        d="M8 20l-4 0l0 -4"></path><path d="M4 20l6 -6"></path><path
+        d="M16 20l4 0l0 -4"></path><path d="M14 14l6 6"></path><path
+        d="M8 4l-4 0l0 4"></path><path d="M4 4l6 6"></path></svg
+    ></button
+  >
+  <iframe
+    id="pdfIframe"
+    src="/CV_JhefersonCheca.pdf"
+    width="100%"
+    class="rounded-3xl bg-transparent h-[600px] md:h-[750px]"></iframe>
+</div>
+<script is:inline>
+  function toggleFullScreen() {
+    const iframe = document.getElementById('pdfIframe');
+    if (iframe.requestFullscreen) {
+      iframe.requestFullscreen();
+    } else if (iframe.mozRequestFullScreen) {
+      iframe.mozRequestFullScreen();
+    } else if (iframe.webkitRequestFullscreen) {
+      iframe.webkitRequestFullscreen();
+    } else if (iframe.msRequestFullscreen) {
+      iframe.msRequestFullscreen();
+    }
+  }
+</script>

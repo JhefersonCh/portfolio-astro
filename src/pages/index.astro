@@ -112,8 +112,11 @@ import Person from '../components/icons/Person.astro';
         if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
           navLinks.forEach((link) => {
             link.classList.remove('active');
-            if (link.getAttribute('href') === `#${section.id}`) {
+            if (link.getAttribute('href') === `/#${section.id}`) {
               link.classList.add('active');
+            }
+            if (link.getAttribute('href') !== `/#${section.id}`) {
+              link.classList.remove('active');
             }
           });
         }
