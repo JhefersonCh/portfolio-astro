@@ -96,7 +96,7 @@ import Person from '../components/icons/Person.astro';
 </Layout>
 
 <script is:inline>
-  (function initi() {
+  (function initIndex() {
     const navLinks = document.querySelectorAll('nav a');
     const sections = Array.from(
       document.querySelectorAll('.section-container'),
@@ -115,15 +115,13 @@ import Person from '../components/icons/Person.astro';
             if (link.getAttribute('href') === `/#${section.id}`) {
               link.classList.add('active');
             }
-            if (link.getAttribute('href') !== `/#${section.id}`) {
-              link.classList.remove('active');
-            }
           });
         }
       });
     }
 
     window.addEventListener('scroll', updateActiveLink);
+    document.addEventListener('astro:page-load', updateActiveLink);
   })();
 </script>
 

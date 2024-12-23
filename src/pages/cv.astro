@@ -12,3 +12,21 @@ import Layout from '../layouts/Layout.astro';
     <FileViewer />
   </SectionContainer>
 </Layout>
+
+<script>
+  function init() {
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach((link) => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `/cv`) {
+        link.classList.add('active');
+      }
+    });
+  }
+  document.addEventListener('astro:page-load', init);
+</script>
+<style is:global>
+  .active {
+    color: rgb(59 130 246 / var(--tw-text-opacity, 1));
+  }
+</style>
