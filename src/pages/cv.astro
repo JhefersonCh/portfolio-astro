@@ -2,6 +2,7 @@
 import FileViewer from '../components/FileViewer.astro';
 import SectionContainer from '../components/SectionContainer.astro';
 import Layout from '../layouts/Layout.astro';
+import PDFViewer from '../components/PDFViewer';
 ---
 
 <Layout
@@ -9,7 +10,8 @@ import Layout from '../layouts/Layout.astro';
   description="Curriculum vitate de Jheferson Danni Checa, reflejando experiencia en diferentes plataformas"
 >
   <SectionContainer class="pt-24 md:pt-36 section-container h-full">
-    <FileViewer />
+    <!-- <FileViewer /> -->
+    <PDFViewer client:load fileUrl="/CV_JhefersonCheca.pdf" />
   </SectionContainer>
 </Layout>
 
